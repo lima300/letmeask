@@ -4,15 +4,19 @@ import { Link, useHistory } from "react-router-dom";
 
 import illustrationImg from "../assests/images/illustration.svg";
 import logo from "../assests/images/logo.svg";
+import darkImg from "../assests/images/moon.png";
+import lightImg from "../assests/images/sun.png";
 
 import { Button } from "../components/Button";
 import { database } from "../services/firebase";
 
 import "../styles/auth.scss";
 import { useAuth } from "../hooks/useAuth";
+import { useTheme } from "../hooks/useTheme";
 
 export function NewRoom() {
   const { user } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const history = useHistory();
   const [newRoom, setNewRoom] = useState("");
 
@@ -34,7 +38,7 @@ export function NewRoom() {
   }
 
   return (
-    <div id="page-auth">
+    <div id="page-auth" className={theme}>
       <aside>
         <img
           src={illustrationImg}
@@ -44,6 +48,13 @@ export function NewRoom() {
         <p>Tire as dúvidadas da sua audiência em tempo-real</p>
       </aside>
       <main>
+        <button onClick={toggleTheme} className="btn-toggle">
+          {theme === "light" ? (
+            <img src={lightImg} alt="Alterar tema do site" />
+          ) : (
+            <img src={darkImg} alt="Alterar tema do site" />
+          )}
+        </button>
         <div className="main-content">
           <img src={logo} alt="Letmeask" />
           <h2>Criar uma nova sala</h2>

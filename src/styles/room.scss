@@ -17,9 +17,17 @@
       > div {
         display: flex;
         gap: 16px;
+      }
+      button {
+        height: 40px;
+      }
+      .btn-toggle {
+        background: transparent;
+        border: none;
+        cursor: pointer;
 
-        button {
-          height: 40px;
+        img {
+          width: 30px;
         }
       }
     }
@@ -108,5 +116,70 @@
     .question-list {
       margin-top: 32px;
     }
+  }
+}
+#page-room.dark {
+  background-color: #000;
+
+  header {
+    border-bottom: 1px solid #e1a1c9;
+    .content {
+      .room-code {
+        background-color: transparent;
+        color: #fff;
+      }
+    }
+  }
+
+  main {
+    .room-title {
+      h1 {
+        color: #fff;
+      }
+    }
+
+    form {
+      textarea {
+        background-color: #6d4a7b;
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.767);
+        }
+      }
+      .form-footer {
+        span {
+          color: rgba(255, 255, 255, 0.466);
+        }
+      }
+    }
+    .question-list {
+      .question {
+        background-color: #6d4a7b;
+        color: rgba(255, 255, 255, 0.767);
+
+        p,
+        span {
+          color: rgba(255, 255, 255, 0.589);
+        }
+
+        &.highlighted {
+          background-color: rgba(139, 74, 134, 0.733);
+          p,
+          span {
+            color: rgba(255, 255, 255, 0.767);
+          }
+        }
+
+        &.answered {
+          background-color: #63526b;
+          p,
+          span {
+            color: rgba(255, 255, 255, 0.315);
+          }
+        }
+      }
+    }
+  }
+  .button.outlined {
+    background-color: transparent;
   }
 }

@@ -12,8 +12,11 @@ import logoImg from "../assests/images/logo.svg";
 import deleteImg from "../assests/images/delete.svg";
 import checkImg from "../assests/images/check.svg";
 import answerImg from "../assests/images/answer.svg";
+import darkImg from "../assests/images/moon.png";
+import lightImg from "../assests/images/sun.png";
 
 import "../styles/room.scss";
+import { useTheme } from "../hooks/useTheme";
 
 // import { useAuth } from "../hooks/useAuth";
 
@@ -26,8 +29,8 @@ export function AdminRoom() {
   const history = useHistory();
   const params = useParams<RoomParams>();
   const roomId = params.id;
-
   const { questions, title } = useRoom(roomId);
+  const { theme, toggleTheme } = useTheme();
 
   async function handleDeleteQuestion(questionId: string) {
     if (window.confirm("Tem certeza que você deseja excluir esta pegunta?")) {
@@ -56,7 +59,7 @@ export function AdminRoom() {
   }
 
   return (
-    <div id="page-room">
+    <div id="page-room" className={theme}>
       <header>
         <div className="content">
           <img src={logoImg} alt="Letmeask" />
@@ -65,6 +68,13 @@ export function AdminRoom() {
             <Button isOutlined onClick={handleEndRoom}>
               Encerrar Sala
             </Button>
+            <button onClick={toggleTheme} className="btn-toggle">
+              {theme === "light" ? (
+                <img src={lightImg} alt="Alterar tema do site" />
+              ) : (
+                <img src={darkImg} alt="Alterar tema do site" />
+              )}
+            </button>
           </div>
         </div>
       </header>
