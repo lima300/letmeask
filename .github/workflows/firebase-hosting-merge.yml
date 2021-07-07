@@ -18,3 +18,10 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_LETMEASK_EDA6E }}"
           channelId: live
           projectId: letmeask-eda6e
+        env:
+          REACT_APP_API_KEY: AIzaSyBNGEnNcKE5oVYxi-W0aiqxJbvSFkGf_V4
+          REACT_APP_AUTH_DOMAIN: letmeask-eda6e.firebaseapp.com
+          REACT_APP_PROJECT_ID: letmeask-eda6e
+          REACT_APP_STORAGE_BUCKET: letmeask-eda6e.appspot.com
+          REACT_APP_MESSAGING_SENDER_IO: 1033640090617
+          REACT_APP_APP_ID: 1:1033640090617:web:127c9f2a5203b0c321bb28
