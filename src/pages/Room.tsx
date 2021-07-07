@@ -2,10 +2,11 @@ import { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import logoImg from "../assests/images/logo.svg";
+import logoDark from "../assests/images/logoDark.svg";
 import darkImg from "../assests/images/moon.png";
 import lightImg from "../assests/images/sun.png";
 
-import { Button } from "../components/Button";
+import { ButtonC } from "../components/Button";
 import { RoomCode } from "../components/RoomCode";
 import { Question } from "../components/Question";
 
@@ -75,7 +76,7 @@ export function Room() {
     <div id="page-room" className={theme}>
       <header>
         <div className="content">
-          <img src={logoImg} alt="Letmeask" />
+          <img src={theme === "light" ? logoImg : logoDark} alt="Letmeask" />
           <>
             <RoomCode code={roomId} />
             <button onClick={toggleTheme} className="btn-toggle">
@@ -111,9 +112,9 @@ export function Room() {
                 Para enviar uma pergunta, <button>Faça seu login</button>{" "}
               </span>
             )}
-            <Button type="submit" disabled={!user}>
+            <ButtonC type="submit" disabled={!user}>
               Enviar pergunta
-            </Button>
+            </ButtonC>
           </div>
         </form>
         <div className="question-list">

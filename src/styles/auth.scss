@@ -158,18 +158,18 @@
 #page-auth.dark {
   aside {
     strong {
-      color: #000;
+      color: #2c2c2c;
     }
     p {
-      color: #000;
+      color: #2c2c2c;
     }
   }
   main {
-    background-color: #000;
+    background-color: #2c2c2c;
 
     form {
       input {
-        background-color: #000;
+        background-color: #2c2c2c;
         color: #fff;
         &::placeholder {
           color: rgba(255, 255, 255, 0.726);

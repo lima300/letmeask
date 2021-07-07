@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap";
+
 * {
   margin: 0;
   padding: 0;
@@ -14,8 +16,4 @@ input,
 button,
 textarea {
   font: 400 16px "Roboto", sans-serif;
-}
-
-#root {
-  height: 100%;
 }

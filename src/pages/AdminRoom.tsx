@@ -6,17 +6,21 @@ import { database } from "../services/firebase";
 
 import { RoomCode } from "../components/RoomCode";
 import { Question } from "../components/Question";
-import { Button } from "../components/Button";
+import { ButtonC } from "../components/Button";
 
 import logoImg from "../assests/images/logo.svg";
+import logoDark from "../assests/images/logoDark.svg";
 import deleteImg from "../assests/images/delete.svg";
 import checkImg from "../assests/images/check.svg";
 import answerImg from "../assests/images/answer.svg";
 import darkImg from "../assests/images/moon.png";
 import lightImg from "../assests/images/sun.png";
+import warning from "../assests/images/warning.svg";
 
 import "../styles/room.scss";
 import { useTheme } from "../hooks/useTheme";
+import { Button, Modal } from "react-bootstrap";
+import { useState } from "react";
 
 // import { useAuth } from "../hooks/useAuth";
 
@@ -31,11 +35,15 @@ export function AdminRoom() {
   const roomId = params.id;
   const { questions, title } = useRoom(roomId);
   const { theme, toggleTheme } = useTheme();
+  const [show, setShow] = useState(false);
+  const [question, setQuestion] = useState("");
 
-  async function handleDeleteQuestion(questionId: string) {
-    if (window.confirm("Tem certeza que você deseja excluir esta pegunta?")) {
-      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+  async function handleDeleteQuestion(questionId: string, del?: boolean) {
+    if (del) {
+      await database.ref(`rooms/${roomId}/questions/${question}`).remove();
     }
+    toggleModal();
+    setQuestion(questionId);
   }
 
   async function handleEndRoom() {
@@ -58,16 +66,20 @@ export function AdminRoom() {
     });
   }
 
+  function toggleModal() {
+    setShow(!show);
+  }
+
   return (
     <div id="page-room" className={theme}>
       <header>
         <div className="content">
-          <img src={logoImg} alt="Letmeask" />
+          <img src={theme === "light" ? logoImg : logoDark} alt="Letmeask" />
           <div>
             <RoomCode code={roomId} />
-            <Button isOutlined onClick={handleEndRoom}>
+            <ButtonC isOutlined onClick={handleEndRoom}>
               Encerrar Sala
-            </Button>
+            </ButtonC>
             <button onClick={toggleTheme} className="btn-toggle">
               {theme === "light" ? (
                 <img src={lightImg} alt="Alterar tema do site" />
@@ -123,6 +135,24 @@ export function AdminRoom() {
             );
           })}
         </div>
+        <Modal show={show}>
+          <Modal.Header closeButton />
+          <Modal.Body>
+            <img className="warning pb-2" src={warning} alt="warning" />
+            <h5>Tem certeza que você deseja excluir esta pegunta?</h5>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="danger" onClick={toggleModal}>
+              Não
+            </Button>
+            <Button
+              variant="success"
+              onClick={() => handleDeleteQuestion("", true)}
+            >
+              Sim
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </main>
     </div>
   );

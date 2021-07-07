@@ -7,7 +7,7 @@ import logo from "../assests/images/logo.svg";
 import darkImg from "../assests/images/moon.png";
 import lightImg from "../assests/images/sun.png";
 
-import { Button } from "../components/Button";
+import { ButtonC } from "../components/Button";
 import { database } from "../services/firebase";
 
 import "../styles/auth.scss";
@@ -34,7 +34,7 @@ export function NewRoom() {
       authorId: user?.id,
     });
 
-    history.push(`/rooms/${firebaseRoom.key}`);
+    history.replace(`/admin/rooms/${firebaseRoom.key}`);
   }
 
   return (
@@ -65,7 +65,7 @@ export function NewRoom() {
               onChange={(event) => setNewRoom(event.target.value)}
               value={newRoom}
             />
-            <Button type="submit">Criar sala</Button>
+            <ButtonC type="submit">Criar sala</ButtonC>
           </form>
           <p>
             Quer entrar em uma sala existente? <Link to="/">Clique aqui</Link>
